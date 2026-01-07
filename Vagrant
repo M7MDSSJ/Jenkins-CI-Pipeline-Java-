@@ -1,4 +1,3 @@
-```markdown
 # Vagrant Provisioning Guide
 
 This guide covers provisioning the three virtual machines required for the lab using **Vagrant** and **VirtualBox**.
