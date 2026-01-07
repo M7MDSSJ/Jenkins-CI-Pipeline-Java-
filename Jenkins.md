@@ -173,10 +173,4 @@ post {
 - Check Jenkins logs for plugin or tool issues.
 
 Next: Proceed to **[sonarqube.md](./sonarqube.md)** for SonarQube setup and project analysis details.
-```
 
-This file is fully valid Markdown, ready to copy as `jenkins.md`.  
-All code blocks are properly fenced, and text after them uses correct Markdown formatting (lists, headings, etc.).
-
-Let me know when you're ready for `sonarqube.md`!
-```
