@@ -1,60 +1,75 @@
-# Jenkins CI Pipeline Lab (Java)
+# Jenkins CI/CD Lab with SonarQube, Nexus, and Slack Integration
+
+![Architecture Diagram](./screenshots/architecture-diagram.png)
 
 ## Overview
 
-This repository demonstrates a complete Continuous Integration (CI) pipeline implemented using Jenkins for a Java-based application.  
-The project represents a production-like CI lab where multiple DevOps tools are integrated to automate testing, enforce code quality, manage artifacts, and provide team notifications.
+This repository provides a complete, reproducible lab for setting up a **Continuous Integration (CI) pipeline** for a Java Maven application using Jenkins. The pipeline automates testing, code quality checks, static analysis, artifact publishing, and team notifications — all in a fully virtualized environment.
 
-The pipeline follows a quality-first CI model, ensuring that source code is validated and analyzed before any build artifact is published.
+The infrastructure consists of three virtual machines provisioned with **Vagrant**:
+- **Jenkins** – CI server
+- **SonarQube** – Code quality analysis (with PostgreSQL and Nginx reverse proxy)
+- **Nexus** – Artifact repository
 
----
+### Workflow
 
-## Architecture Diagram
+1. Developer pushes code to a GitHub repository.
+2. Jenkins fetches the latest code.
+3. Executes **unit tests** with Maven.
+4. Runs **Checkstyle** analysis.
+5. Builds the application (`mvn install -DskipTests`).
+6. Performs **static code analysis** using SonarQube.
+7. Waits for the **SonarQube Quality Gate** – the build fails if quality standards are not met.
+8. On success, uploads the `.war` artifact to **Nexus Repository**.
+9. Sends a **Slack notification** with the build result (success or failure).
 
-![CI Architecture](screenshots/architecture-diagram.png)
+This setup ensures high code quality, early issue detection, and centralized artifact management.
 
----
+### Tools & Technologies
 
-## Tool Stack
+| Tool              | Purpose                                      | Why It's Used                              |
+|-------------------|----------------------------------------------|--------------------------------------------|
+| Jenkins           | CI orchestration & Pipeline as Code          | Flexible, plugin-rich, industry standard    |
+| Maven             | Build, test, dependency management           | Default tool for Java projects             |
+| SonarQube         | Static code analysis & quality gates         | Deep insights into bugs, vulnerabilities, code smells |
+| PostgreSQL        | Database for SonarQube                       | Officially supported backend               |
+| Nginx             | Reverse proxy for SonarQube                  | Clean external access and security         |
+| Nexus OSS         | Maven artifact repository                    | Secure storage and versioning of builds    |
+| Vagrant           | VM provisioning                              | Fast, reproducible local environment       |
+| VirtualBox        | VM provider                                  | Free and reliable                          |
+| Slack             | Build notifications                          | Instant team feedback                      |
+| GitHub            | Source code hosting                          | Standard version control                   |
 
-| Category | Tool |
-|--------|------|
-| Source Control | GitHub |
-| CI Orchestration | Jenkins |
-| Build & Test | Maven |
-| Code Style Enforcement | Checkstyle |
-| Static Code Analysis | SonarQube |
-| Quality Gate Enforcement | SonarQube |
-| Artifact Repository | Nexus Repository |
-| Notifications | Slack |
-| Infrastructure Provisioning | Vagrant |
-| Virtualization | VirtualBox |
-| Runtime | JDK 17 |
-| Database | PostgreSQL |
-| Reverse Proxy | Nginx |
+### Key Jenkins Plugins
+- Nexus Artifact Uploader
+- SonarQube Scanner
+- Pipeline Maven Integration
+- Build Timestamp
+- Pipeline Utility Steps
+- Slack Notification
 
----
+### Service Access (After Vagrant Provisioning)
 
-## End-to-End CI Flow
+| Service     | Private IP         | Access URL                            | Notes / Default Credentials                  |
+|-------------|--------------------|---------------------------------------|----------------------------------------------|
+| Jenkins     | 192.168.33.13     | http://192.168.33.13:8080            | Initial password shown during provisioning  |
+| SonarQube   | 192.168.33.12     | http://192.168.33.12 (port 80 via Nginx) | Default: admin / admin (change immediately) |
+| Nexus       | 192.168.33.11     | http://192.168.33.11:8081            | Default: admin / admin123 (check logs)      |
 
-1. A developer pushes code to the GitHub repository  
-2. Jenkins fetches the source code using Git integration  
-3. Unit tests are executed using Maven  
-4. Code style is validated using Checkstyle  
-5. The application is built using Maven  
-6. Static code analysis is performed using SonarQube  
-7. The SonarQube Quality Gate is evaluated  
-8. If all quality checks pass, the build artifact is published to Nexus Repository  
-9. Jenkins sends the build result to Slack  
+### Integrations Overview
+- **Jenkins → SonarQube**: Analysis via SonarQube Scanner; Quality Gate enforcement.
+- **Jenkins → Nexus**: Artifact upload using Nexus Artifact Uploader with stored credentials.
+- **Jenkins → Slack**: Colored status notifications sent to configured channel.
+- **Jenkins → GitHub**: Automatic code checkout from public repository.
 
-Each stage depends on the success of the previous stage, enforcing fail-fast behavior and preventing low-quality artifacts from being published.
+### Getting Started
+1. Begin with **[vagrant.md](./vagrant.md)** to provision the three VMs.
+2. Follow the individual guides for each tool:
+   - [jenkins.md](./jenkins.md)
+   - [sonarqube.md](./sonarqube.md)
+   - [nexus.md](./nexus.md)
+   - [slack.md](./slack.md)
 
----
+Each guide includes detailed steps, configuration snippets, verification instructions, and relevant screenshots.
 
-## Project Purpose
-
-- Demonstrate a real-world Jenkins CI pipeline
-- Showcase integration between CI, quality, and artifact tools
-- Enforce automated quality gates before artifact publishing
-- Serve as a hands-on DevOps CI laboratory
-- Provide a portfolio-ready CI reference implementation
+Enjoy building a robust CI pipeline! 🚀
