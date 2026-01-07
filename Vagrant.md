@@ -123,8 +123,3 @@ vagrant halt
 ```
 
 Next: Proceed to **[jenkins.md](./jenkins.md)** for Jenkins configuration, tools, plugins, and pipeline setup.
-```
-
-**Fixed**: The text after `vagrant up` is now properly inside Markdown (using an unordered list with `-`). No more exiting the code fence prematurely. The entire file is pure, valid GitHub-flavored Markdown and ready to copy.
-
-Let me know when you're ready for `jenkins.md`!
