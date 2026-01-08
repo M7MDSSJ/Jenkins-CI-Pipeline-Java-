@@ -8,7 +8,7 @@ This repository provides a complete, reproducible lab for setting up a **Continu
 
 The infrastructure consists of three virtual machines provisioned with **Vagrant**:
 - **Jenkins** – CI server
-- **SonarQube** – Code quality analysis (with PostgreSQL and Nginx reverse proxy)
+- **SonarQube** – Code quality analysis (with MySQL and Nginx reverse proxy)
 - **Nexus** – Artifact repository
 
 ### Workflow
@@ -32,7 +32,7 @@ This setup ensures high code quality, early issue detection, and centralized art
 | Jenkins           | CI orchestration & Pipeline as Code          | Flexible, plugin-rich, industry standard    |
 | Maven             | Build, test, dependency management           | Default tool for Java projects             |
 | SonarQube         | Static code analysis & quality gates         | Deep insights into bugs, vulnerabilities, code smells |
-| PostgreSQL        | Database for SonarQube                       | Officially supported backend               |
+| MySQL        | Database for SonarQube                       | Officially supported backend               |
 | Nginx             | Reverse proxy for SonarQube                  | Clean external access and security         |
 | Nexus OSS         | Maven artifact repository                    | Secure storage and versioning of builds    |
 | Vagrant           | VM provisioning                              | Fast, reproducible local environment       |
