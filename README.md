@@ -11,10 +11,6 @@ The infrastructure consists of three virtual machines provisioned with **Vagrant
 - **SonarQube** – Code quality analysis (with MySQL and Nginx reverse proxy)
 - **Nexus** – Artifact repository
 
-### **Disclaimer**: This project is based on the "Decoding DevOps – From Basics to Advanced Projects with AI" course on Udemy.  
-You can find the course here: [Decoding DevOps – From Basics to Advanced Projects with AI](https://www.udemy.com/course/decodingdevops/?couponCode=KEEPLEARNINGOCTA)  
-The original source code used in this lab comes from: [vprofile-project](https://github.com/hkhcoder/vprofile-project)
-
 ### Workflow
 
 1. Developer pushes code to a GitHub repository.
@@ -76,4 +72,6 @@ This setup ensures high code quality, early issue detection, and centralized art
 
 Each guide includes detailed steps, configuration snippets, verification instructions, and relevant screenshots.
 
-Enjoy building a robust CI pipeline! 🚀
+**⚠️ Disclaimer**: This project is based on the "Decoding DevOps – From Basics to Advanced Projects with AI" course on Udemy.  
+You can find the course here: [Decoding DevOps – From Basics to Advanced Projects with AI](https://www.udemy.com/course/decodingdevops/?couponCode=KEEPLEARNINGOCTA)  
+The original source code used in this lab comes from: [vprofile-project](https://github.com/hkhcoder/vprofile-project)
