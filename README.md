@@ -11,7 +11,7 @@ The infrastructure consists of three virtual machines provisioned with **Vagrant
 - **SonarQube** – Code quality analysis (with MySQL and Nginx reverse proxy)
 - **Nexus** – Artifact repository
 
-# **Disclaimer**: This project is based on the "Decoding DevOps – From Basics to Advanced Projects with AI" course on Udemy.  
+### **Disclaimer**: This project is based on the "Decoding DevOps – From Basics to Advanced Projects with AI" course on Udemy.  
 You can find the course here: [Decoding DevOps – From Basics to Advanced Projects with AI](https://www.udemy.com/course/decodingdevops/?couponCode=KEEPLEARNINGOCTA)  
 The original source code used in this lab comes from: [vprofile-project](https://github.com/hkhcoder/vprofile-project)
 
